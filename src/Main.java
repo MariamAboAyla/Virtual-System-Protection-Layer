@@ -5,10 +5,28 @@ import java.util.Scanner;
 public class Main
 {
 	 public static void main(String[] args) throws IOException {
-
+		Verification verification = Verification.getInstance();
+		VDirectory root = new VDirectory("root");
 		User u = new User();
 		u.addUser ( "mariam", "admin" );
 		u.addUser ( "newUser", "xxx" );
+		verification.setUserCredentials(u);
+//		verification.login("mariam", "admin");
+		if(verification.setPrivilege("mariam", root, Privileges.CREATE_DELETE)) {
+			System.out.println("Privilege set successfully!");
+		}
+		else {
+			System.out.println("Privilege set failed!");
+		}
+		if(verification.checkPrivilege("mariam", root)) {
+			System.out.println("User has privilege!");
+		}
+		else {
+			System.out.println("User doesn't have privilege!");
+		}
+
+
+
 
 /*
 		AllocationManager manager = null;

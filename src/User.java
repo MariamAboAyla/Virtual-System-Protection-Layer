@@ -8,7 +8,8 @@ import java.util.Objects;
 
 public class User implements IUserCredentials{
 
-    private HashMap<String, String> systemUsers = new HashMap<> (  );  // stores the system's users
+    private static final HashMap<String, String> systemUsers = new HashMap<> (  );  // stores the system's users
+
     private final String adminUsername, adminPassword;  // holds the username and password of the admin
     private String currentUser;  // holds the username of currently logged-in user
 
@@ -89,6 +90,5 @@ public class User implements IUserCredentials{
 
         return false;
     }
-
 
 }

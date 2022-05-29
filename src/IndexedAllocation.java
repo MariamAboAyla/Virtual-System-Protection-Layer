@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class IndexedAllocation implements AllocationManager{
     private final ArrayList<Integer> blocks = new ArrayList<>(); // the blocks that are allocated to this file
     private final HashMap<Integer, ArrayList<Integer>> IndexBlocks = new HashMap<>(); // <block, [indexes]>
-    private final ArrayList<BlockDetails> StoredFiles  = new ArrayList<>(); // this is the list of files that are stored in the disk
     private final HashMap<String , Integer> StoredFilesToIndexFiles = new HashMap<>(); // <fileName, indexFile>
 
     public final String VFS = "VFIndexed.vfs";

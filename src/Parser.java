@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Parser {
     public String commandName="";
     public ArrayList<String> args= new ArrayList<>(); //This method will divide the input into commandName and args
-    public static String[] cmds = {"CreateFile","CreateFolder","DeleteFile","DeleteFolder","DisplayDiskStatues","DisplayDiskStructure"};
+    public static String[] cmds = {"CreateFile","CreateFolder","DeleteFile","DeleteFolder","DisplayDiskStatues","DisplayDiskStructure,Login"};
     //where "input" is the string command entered by the user
 
     public boolean parse(String input) {
