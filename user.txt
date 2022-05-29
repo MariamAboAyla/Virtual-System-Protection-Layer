@@ -1,0 +1,3 @@
+admin , admin
+mariam , admin
+newUser , xxx
