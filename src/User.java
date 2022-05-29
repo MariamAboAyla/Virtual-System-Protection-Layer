@@ -18,11 +18,11 @@ public class User implements IUserCredentials{
 
 
     /* Class constructor: admin logged-in by default, and set its data */
-    public User(String adminUsername, String adminPassword) throws IOException {
-        this.adminPassword = adminPassword;
-        this.adminUsername = adminUsername;
+    public User() throws IOException {
+        this.adminPassword = "admin";
+        this.adminUsername = "admin";
         this.currentUser = adminUsername;
-        addToFile(adminUsername, adminPassword);
+        addToFile(this.adminUsername, this.adminPassword);
 
     }
 

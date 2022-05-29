@@ -6,7 +6,7 @@ public class Main
 {
 	 public static void main(String[] args) throws IOException {
 
-		User u = new User("admin", "admin");
+		User u = new User();
 		u.addUser ( "mariam", "admin" );
 		u.addUser ( "newUser", "xxx" );
 
