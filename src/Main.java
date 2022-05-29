@@ -1,11 +1,16 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-	 public static void main(String[] args)
-    {
+public class Main
+{
+	 public static void main(String[] args) throws IOException {
 
+		User u = new User("admin", "admin");
+		u.addUser ( "mariam", "admin" );
+		u.addUser ( "newUser", "xxx" );
 
+/*
 		AllocationManager manager = null;
 		VFile file1;
 		VDirectory dir1;
@@ -137,6 +142,6 @@ public class Main {
 		}
 
 
-
+*/
 	}
 }
