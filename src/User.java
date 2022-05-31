@@ -8,6 +8,7 @@ public class User implements IUserCredentials{
 
     private static final HashMap<String, String> systemUsers = new HashMap<> (  );  // stores the system's users
 
+    // each user and his folder and his privilege on it
     private static final HashMap<String,String> UsersGrant = new HashMap<> ();
 
     VDirectory dir1=new VDirectory();
@@ -18,8 +19,8 @@ public class User implements IUserCredentials{
 
     /* first line contains admin's username and password, and rest of lines contains the other users */
     public final String UserFile = "user.txt";
-    public final String UserGrant = "capabilities.txt";
-    public final String temp = "TempCapabilities.txt";
+    public final String UserGrant = "capabilities.txt";// main file
+    public final String temp = "TempCapabilities.txt";// temp file to help main file
 
 
     /* Class constructor: admin logged-in by default, and set its data */
@@ -73,6 +74,7 @@ public class User implements IUserCredentials{
                     String concat =Path+" "+what;
                     UsersGrant.put(name,concat);
                     addToCapabilities(name,Path,what);
+                    //System.out.println("heereee"+name);
                 }
                 else
                 {
@@ -91,6 +93,7 @@ public class User implements IUserCredentials{
         return;
     }
 
+    // here we can know if specific user can create or not
     public boolean createCheaker (String name)
     {
         String status = UsersGrant.get(name);
@@ -99,6 +102,8 @@ public class User implements IUserCredentials{
         if(arr[1].equalsIgnoreCase("00"))return false;
         return true;
     }
+
+    // here we can know if specific user can delete or not
     public boolean deleteCheaker (String name)
     {
         String status = UsersGrant.get(name);
@@ -107,45 +112,52 @@ public class User implements IUserCredentials{
         if(arr[1].equalsIgnoreCase("10"))return false;
         return true;
     }
+
+    // here we write on file folder and each users and what they can do
     public void addToCapabilities(String name , String Path , String what) throws IOException {
         new FileWriter(temp, false).close();
 
         String line, line2 = "";
         BufferedWriter writer = new BufferedWriter (new FileWriter(temp, true));
         try {
+                boolean found=false;
                 BufferedReader in = new BufferedReader(new FileReader(UserGrant));
                 while ((line = in.readLine()) != null)
                 {
                     String[] arr = line.split(",");
-                    line2 =arr[0];
+                    line2=arr[0];
                     boolean ok = false;
                     for (int i = 1; i < arr.length; i += 2) {
                         if (arr[i].equalsIgnoreCase(name) && arr[0].equalsIgnoreCase(Path)) {
                             line2 = line2 + "," + arr[i] + "," + what;
                             ok = true;
+                            found=true;
                         }
                         else {
-                        line2 = line2 + "," + arr[i] + "," + arr[i + 1];
+                        line2 = line2 + "," + arr[i] + "," + arr[i+1];
                         }
                     }
-
-                    if (arr[0].equalsIgnoreCase(Path)) {
+                    if(arr[0].equalsIgnoreCase(Path)) {
                         if (!ok) {
                             line2 = line2 + "," + name + "," + what;
+                            found=true;
                         }
                     }
                     line2 = line2 + "\n";
+                    writer.write(line2);
+                }
+                if(!found)
+                {
+                    line2 = Path+","+name+","+what+"\n";
                     writer.write(line2);
                 }
                 writer.close ();
                 in.close();
             }
         catch (IOException e) {
-            line2 = Path+","+name+","+what;
-            line2 = line2 +"\n";
+            line2 = Path+","+name+","+what+"\n";
             writer.write(line2);
             writer.close ();
-            //System.out.println("EXCEPTION!" + e);
         }
         new FileWriter(UserGrant, false).close();
 

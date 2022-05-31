@@ -12,20 +12,35 @@ public class Main
 		root.addNewDirectory("root/sayed#1/sayedinside#2");
 
 		User u = new User();
-		u.addUser ( "mariam", "admin" );
+		u.addUser ( "mariam", "alo" );
 
 		u.addUser ( "newUser", "xxx" );
 
-		verification.setUserCredentials(u);
+		 u.addUser ( "kambosha", "244" );
+
+		//verification.setUserCredentials(u);
 
 		//verification.login("mariam", "admin");
 
 
 		 u.grantUser("newUser" , "root/sayed#1/sayedinside#2" , "11" , root);
-		 u.grantUser("mariam" , "root/sayed#1" , "01" , root);
-		 //verification.login("newUser", "xxx");
-		//u.createCheaker("newUser");
-
+		 u.grantUser("mariam" , "root/sayed#1" , "00" , root);
+		if(u.createCheaker("newUser"))
+		{
+			System.out.println("can create");
+		}
+		else
+		{
+			System.out.println("noooo");
+		}
+		if(u.deleteCheaker("mariam"))
+		{
+			System.out.println("can delete");
+		}
+		else
+		{
+			System.out.println("hh nooooo");
+		}
 
 
 /*
