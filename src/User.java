@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class User implements IUserCredentials{
 
@@ -44,6 +41,22 @@ public class User implements IUserCredentials{
             System.out.println ("Can't be added! Already have user with the same name!!" );
             return false;
         }
+
+
+        Scanner scan = new Scanner ( new File ( "user.txt" ) );
+        while(scan.hasNext ( ))
+        {
+            String line = scan.nextLine ();
+            int end = line.indexOf ( " " );
+            if(line.substring ( 0, end ).equals ( username ) )
+            {
+                System.out.println ("Can't be added! Already have user with the same name!!" );
+                return false;
+            }
+
+        }
+        scan.close ();
+
         systemUsers.put ( username, password );
         System.out.println ("User Added Successfully :) ");
         addToFile(username, password);
@@ -97,6 +110,10 @@ public class User implements IUserCredentials{
     public boolean createCheaker (String name)
     {
         String status = UsersGrant.get(name);
+        if(status == null)
+        {
+            // handle this case
+        }
         String arr[] = status.split(" ");
         if(arr[1].equalsIgnoreCase("01"))return false;
         if(arr[1].equalsIgnoreCase("00"))return false;
