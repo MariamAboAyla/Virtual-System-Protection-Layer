@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Verification {
+
     private static final HashMap<String ,DirectoryPrivilegePair> userPrivileges = new HashMap<>();
     private static IUserCredentials userCredentials;
     private static Verification instance=null;
@@ -17,9 +18,11 @@ public class Verification {
             return instance;
         }
     }
+
     public boolean checkUser(String username, String password) {
         return userCredentials.checkUser(username, password);
     }
+
     public boolean login(String username, String password) {
         if(checkUser(username, password)) {
             userCredentials.setCurrentUser(username);
@@ -29,6 +32,7 @@ public class Verification {
             return false;
         }
     }
+
     public void setUserCredentials(IUserCredentials userCredentials) {
         this.userCredentials = userCredentials;
     }

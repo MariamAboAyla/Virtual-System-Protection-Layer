@@ -5,31 +5,32 @@ import java.util.Scanner;
 public class Main
 {
 	 public static void main(String[] args) throws IOException {
+
 		Verification verification = Verification.getInstance();
 		VDirectory root = new VDirectory("root");
+		root.addNewDirectory("root/sayed#1");
+		root.addNewDirectory("root/sayed#1/sayedinside#2");
+
 		User u = new User();
 		u.addUser ( "mariam", "admin" );
-		u.addUser ( "newUser", "xxx" );
-		verification.setUserCredentials(u);
-//		verification.login("mariam", "admin");
-		if(verification.setPrivilege("mariam", root, Privileges.CREATE_DELETE)) {
-			System.out.println("Privilege set successfully!");
-		}
-		else {
-			System.out.println("Privilege set failed!");
-		}
-		if(verification.checkPrivilege("mariam", root)) {
-			System.out.println("User has privilege!");
-		}
-		else {
-			System.out.println("User doesn't have privilege!");
-		}
 
+		u.addUser ( "newUser", "xxx" );
+
+		verification.setUserCredentials(u);
+
+		//verification.login("mariam", "admin");
+
+
+		 u.grantUser("newUser" , "root/sayed#1/sayedinside#2" , "11" , root);
+		 u.grantUser("mariam" , "root/sayed#1" , "01" , root);
+		 //verification.login("newUser", "xxx");
+		//u.createCheaker("newUser");
 
 
 
 /*
 		AllocationManager manager = null;
+
 		VFile file1;
 		VDirectory dir1;
 		System.out.println("Enter the size of the disk");

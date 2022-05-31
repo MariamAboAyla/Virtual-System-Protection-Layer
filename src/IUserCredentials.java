@@ -7,6 +7,4 @@ public interface IUserCredentials
 
     public String TellUser ();
 
-
-
 }
